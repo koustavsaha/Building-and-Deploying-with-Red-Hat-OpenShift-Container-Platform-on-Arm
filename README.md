@@ -142,7 +142,7 @@ The push event automatically triggered the Tekton Pipeline for building and depl
 
 ![CI has finished](images/CIfinished.png)
 
-The pipeline created quay.io/rh-ee-ksaha/test-arm-build:latest image. Red Hat Quay also performs security checks on the image and published it along with various image metadata.
+The pipeline created [quay.io/rh-ee-ksaha/test-arm-build:latest]() image. Red Hat Quay also performs security checks on the image and published it along with various image metadata.
 
 ![quay](images/quay.png)
 
