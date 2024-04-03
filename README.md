@@ -116,7 +116,7 @@ Following this integration, we create a Pipelines as Code repository Custom Reso
 
 ![PAC repo CR creation](images/PACrepocr.png)
 
-Our source code repository features a ```.tekton``` directory housing the PipelineRun and pipeline YAML file. In the PipelineRun YAML, we've added Pipelines as Code annotations as follows:
+Our source code repository features a ```.tekton``` directory housing the [PipelineRun](https://github.com/koustavsaha/springboot-docker-arm/blob/master/.tekton/push.yaml) and [Pipeline](https://github.com/koustavsaha/springboot-docker-arm/blob/master/.tekton/pipeline-push-arm.yaml) YAML file. In the PipelineRun YAML, we've added Pipelines as Code annotations as follows:
 ```YAML
     pipelinesascode.tekton.dev/target-namespace: koustav-demo
     pipelinesascode.tekton.dev/max-keep-runs: "5"
