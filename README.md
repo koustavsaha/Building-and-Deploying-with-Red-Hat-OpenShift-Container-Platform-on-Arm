@@ -15,9 +15,9 @@ We'll leverage [Red Hat OpenShift Pipelines](https://www.redhat.com/en/technolog
 ## Building the Tekton Pipeline: Explained
 As part of this blog, our tekton pipeline will be consisting of four key tasks:
 ![pipeline](images/pipelineview.png)
-For each of the tasks, we use ClusterTask that are shipped with Openshift Pipelines operator and supported by Red Hat
+For each of the tasks, we use ```ClusterTask```s that are shipped with Openshift Pipelines operator and supported by Red Hat
 
-- ```fetch-repository```: This task clones the repository using the git-clone ClusterTask.
+- ```fetch-repository```: This task clones the repository using the ```git-clone``` ```ClusterTask```.
   ```YAML
    # 1. Task - fetch-repository
     - name: fetch-repository
@@ -35,7 +35,7 @@ For each of the tasks, we use ClusterTask that are shipped with Openshift Pipeli
       - name: output
         workspace: workspace
   ```
-- ```maven-build```: This task uses the maven ClusterTask to build the project and package the resulting JAR file. The maven image supported by Red Hat is compatible with Arm architecture.
+- ```maven-build```: This task uses the ```maven``` ```ClusterTask``` to build the project and package the resulting JAR file. The ```maven``` image supported by Red Hat is compatible with Arm architecture.
   ```YAML
     # 2. Task - maven build
   - name: maven-build
@@ -81,7 +81,7 @@ For each of the tasks, we use ClusterTask that are shipped with Openshift Pipeli
       - name: dockerconfig
         workspace: quay-cred
   ```
-- ```deploy```: This task uses the openshift-client ClusterTask to create deployment, service, and route for the application in the OpenShift Container Platform on Arm.
+- ```deploy```: This task uses the ```openshift-client``` ```ClusterTask``` to create ```deployment```, ```service```, and ```route``` for the application in the OpenShift Container Platform on Arm.
   ```YAML
   # 5. Task - kubectl deploy
   - name: deploy
@@ -106,7 +106,7 @@ The full pipeline you can find [here](https://github.com/koustavsaha/springboot-
 ## Pipelines as Code: Simplifying Workflow
 Openshift Pipelines ships with [Pipelines as code](https://pipelinesascode.com/) that allows you to define your CI/CD using Tekton PipelineRuns and Tasks in a file located in your source control management (SCM) system, such as GitHub or GitLab. This file is then used to automatically create a pipeline for a Pull Request or a Push to a branch. By storing the pipeline definition in code, it becomes easier to version, review, and collaborate on pipeline changes with code changes, thus enable tracking using a Git workflow.
 
-In our setup, we'll store our pipeline and PipelineRun in the ```.tekton``` directory of our repository, with the PipelineRun set to trigger upon a push event in the master branch.
+In our setup, we'll store our pipeline and PipelineRun in the ```.tekton``` directory of our repository, with the PipelineRun set to trigger upon a ```push``` event in the ```master``` branch.
 
 We have tightly integrated Pipelines As Code with Openshift console. We will use the console to create a Github App which automatically helps create and install with proper Github permissions needed for Pipelines As Code. This also creates Kubernetes secret containing the private key of the GitHub App and the webhook secret of the Pipelines-as-Code. 
 
@@ -124,7 +124,7 @@ Our source code repository features a ```.tekton``` directory housing the Pipeli
     pipelinesascode.tekton.dev/on-target-branch: master
     pipelinesascode.tekton.dev/pipeline: ".tekton/pipeline-push-arm.yaml"
 ```
-These annotations dictate that when new source code changes are pushed to our master branch, it automatically triggers the defined pipeline, resulting in the creation and deployment of an Arm-compatible OCI image to the Quay repository, followed by deploying the newly created image for the app.
+These annotations dictate that when new source code changes are pushed to our ```master``` branch, it automatically triggers the defined pipeline, resulting in the creation and deployment of an Arm-compatible OCI image to the Quay repository, followed by deploying the newly created image for the app.
 
 ## Triggering the Tekton Pipeline: The Arm Image Journey
 We created -
