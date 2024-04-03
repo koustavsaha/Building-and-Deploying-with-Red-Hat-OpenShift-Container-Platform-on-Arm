@@ -83,7 +83,7 @@ For each of the tasks, we use ```ClusterTask```s that are shipped with Openshift
   ```
 - ```deploy```: This task uses the ```openshift-client``` ```ClusterTask``` to create ```deployment```, ```service```, and ```route``` for the application in the OpenShift Container Platform on Arm.
   ```YAML
-  # 5. Task - kubectl deploy
+  # 4. Task - kubectl deploy
   - name: deploy
     taskRef:
       name: openshift-client
@@ -93,9 +93,8 @@ For each of the tasks, we use ```ClusterTask```s that are shipped with Openshift
     params:
       - name: SCRIPT
         value: |
-          oc apply --filename k8s/
+          sed 's|image: quay.io/rh-ee-ksaha/test-arm-build:master|image: $(params.image-full-path-with-tag)|g' k8s/deployment.yml | oc apply --filename -
           echo "----------"
-          oc patch deployment spring-boot-docker -p '{"spec":{"template":{"spec":{"containers":[{"name":"myapp","image":"$(params.image-full-path-with-tag)"}]}}}}'
           oc get deployment
     workspaces:
       - name: manifest-dir
