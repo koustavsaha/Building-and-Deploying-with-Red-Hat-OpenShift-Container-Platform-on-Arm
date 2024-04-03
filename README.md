@@ -147,5 +147,5 @@ The pipeline created [quay.io/rh-ee-ksaha/test-arm-build:latest]() image. Red Ha
 
 Finally, our application is deployed as part of the pipeline in Openshift Container Platform on Arm. 
 
-![app](images/app.png)
+![app](images/appimage.png)
 
