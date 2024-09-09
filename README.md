@@ -1,4 +1,4 @@
-# Building and Deploying applications with Red Hat OpenShift Container Platform on Arm with Tekton
+# Part 3: Building and Deploying applications with Red Hat OpenShift Container Platform on Arm with Tekton
 
 #### Author: Koustav Saha
 
